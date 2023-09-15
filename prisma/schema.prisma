@@ -1,11 +1,59 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id       String @id @default(uuid()) @map("_id")
+  userId   String @unique
+  name     String
+  imageUrl String @db.String
+  email    String @db.String
+
+  classes Class[]
+  members Member[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Class {
+  id         String  @id @default(uuid()) @map("_id")
+  className  String
+  section    String?
+  Subject    String?
+  Room       String?
+  inviteCode String
+  colorCode  String
+
+  profile   Profile @relation(fields: [profileId], references: [id])
+  profileId String
+
+  members Member[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  Teacher
+  Student
+}
+
+model Member {
+  id   String @id @default(uuid()) @map("_id")
+  role Role   @default(Student)
+
+  class   Class  @relation(fields: [classId], references: [id])
+  classId String
+
+  profile   Profile @relation(fields: [profileId], references: [id])
+  profileId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
