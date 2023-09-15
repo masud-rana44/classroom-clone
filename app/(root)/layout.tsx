@@ -5,7 +5,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <Header />
-      <div>
+      <div className="flex ">
         <Sidebar />
         <div>{children}</div>
       </div>

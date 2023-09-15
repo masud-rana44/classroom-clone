@@ -5,8 +5,8 @@ import { UserButton } from "@clerk/nextjs";
 
 export const Header = () => {
   return (
-    <div className="w-full px-4 py-2 border-b flex items-center justify-between">
-      <div className="flex items-center gap-4">
+    <div className=" w-full px-4 py-2 border-b flex items-center justify-between z-30">
+      <div className="flex s-center gap-4">
         <button className="h-11 w-11 hover:bg-zinc-100 rounded-full flex items-center justify-center p-2 transition ">
           <Menu stroke="#5f6368" />
         </button>
