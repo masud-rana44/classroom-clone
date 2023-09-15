@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Plus, Menu, Grip } from "lucide-react";
+import { Menu, Grip } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
+import { DropdownButton } from "./dropdown-button";
 
 export const Header = () => {
   return (
@@ -18,9 +19,7 @@ export const Header = () => {
         </Link>
       </div>
       <div className="flex items-center gap-2 mr-3">
-        <button className="h-11 w-11 hover:bg-zinc-100 rounded-full flex items-center justify-center p-2 transition ">
-          <Plus />
-        </button>
+        <DropdownButton />
         <button className=" hover:bg-zinc-200/70 rounded-full flex items-center justify-center p-2 transition ">
           <Grip stroke="#5f6368" className="h-[22px] w-[22px]" />
         </button>

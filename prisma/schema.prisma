@@ -23,7 +23,7 @@ model Profile {
 
 model Class {
   id         String  @id @default(uuid()) @map("_id")
-  className  String
+  name       String
   section    String?
   Subject    String?
   Room       String?

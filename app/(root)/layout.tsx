@@ -16,8 +16,6 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     },
   });
 
-  console.log(classes);
-
   return (
     <div>
       <Header />
