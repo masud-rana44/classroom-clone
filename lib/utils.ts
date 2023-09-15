@@ -1,4 +1,4 @@
-import { randomColors } from "@/data/avatar-color";
+import { characters, imageUrls, randomColors } from "@/data/data";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -6,9 +6,31 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getRandomColor() {
-  const length = randomColors.length;
-  const randomNumber = Math.floor(Math.random() * length);
+/////////////////////////////////////
 
-  return randomColors[randomNumber];
+export function generateRandomNumberBetween(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function getRandomColorCode() {
+  const length = randomColors.length;
+
+  return randomColors[generateRandomNumberBetween(0, length - 1)];
+}
+
+export function getRandomImageUrl() {
+  const length = imageUrls.length;
+  return imageUrls[generateRandomNumberBetween(0, length - 1)];
+}
+
+export function getRandomClassCode() {
+  let code = "";
+  const length = generateRandomNumberBetween(5, 7);
+
+  for (let i = 0; i < length; i++) {
+    const idx = generateRandomNumberBetween(0, 36);
+    code += characters[idx];
+  }
+
+  return code;
 }

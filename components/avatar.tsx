@@ -1,13 +1,13 @@
 "use client";
 
-import { cn, getRandomColor } from "@/lib/utils";
+import { getRandomColorCode } from "@/lib/utils";
 
 interface AvatarProps {
   label: string;
 }
 
 export const Avatar = ({ label }: AvatarProps) => {
-  const color = getRandomColor();
+  const color = getRandomColorCode();
 
   return (
     <div

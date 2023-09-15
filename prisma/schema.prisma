@@ -22,13 +22,14 @@ model Profile {
 }
 
 model Class {
-  id         String  @id @default(uuid()) @map("_id")
-  name       String
-  section    String?
-  Subject    String?
-  Room       String?
-  inviteCode String
-  colorCode  String
+  id           String  @id @default(uuid()) @map("_id")
+  name         String
+  section      String?
+  subject      String?
+  room         String?
+  classCode    String  @unique
+  defaultColor String
+  bannerUrl    String  @db.String
 
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId String
@@ -40,13 +41,13 @@ model Class {
 }
 
 enum Role {
-  Teacher
-  Student
+  TEACHER
+  STUDENT
 }
 
 model Member {
   id   String @id @default(uuid()) @map("_id")
-  role Role   @default(Student)
+  role Role   @default(STUDENT)
 
   class   Class  @relation(fields: [classId], references: [id])
   classId String
