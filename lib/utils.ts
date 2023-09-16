@@ -34,3 +34,8 @@ export function getRandomClassCode() {
 
   return code;
 }
+
+export function isValidClassCode(classCode: string) {
+  const regex = /^[A-Za-z0-9]{5,7}$/;
+  return regex.test(classCode);
+}
