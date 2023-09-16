@@ -1,7 +1,7 @@
 import { ClassWithMembersWithProfile } from "@/types";
 import { create } from "zustand";
 
-export type ModalType = "createClass" | "joinClass" | "classCode";
+export type ModalType = "createClass" | "joinClass" | "classCode" | "joinClass";
 
 interface modalData {
   class?: ClassWithMembersWithProfile;

@@ -21,7 +21,10 @@ export const DropdownButton = () => {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="px-0 py-2 font-medium text-2xl rounded-md">
-        <DropdownMenuItem className="py-4 px-6 rounded-none cursor-pointer hover:bg-zinc-100">
+        <DropdownMenuItem
+          onClick={() => onOpen("joinClass")}
+          className="py-4 px-6 rounded-none cursor-pointer hover:bg-zinc-100"
+        >
           Join Class
         </DropdownMenuItem>
         <DropdownMenuItem
