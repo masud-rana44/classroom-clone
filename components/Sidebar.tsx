@@ -9,7 +9,7 @@ import {
   Archive,
 } from "lucide-react";
 
-import { NavItem } from "@/components/NavItem";
+import { NavItem } from "@/components/nav-item";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "./ui/separator";
 

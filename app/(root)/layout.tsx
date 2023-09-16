@@ -1,4 +1,4 @@
-import { Header } from "@/components/Header";
+import { Header } from "@/components/header";
 import { Sidebar } from "@/components/Sidebar";
 import { db } from "@/lib/db";
 import { initialProfile } from "@/lib/initial-profile";
@@ -21,7 +21,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       <Header />
       <div className="flex ">
         <Sidebar />
-        <div>{children}</div>
+        <div className="w-[calc(100vw-300px)] h-full">{children}</div>
       </div>
     </div>
   );
