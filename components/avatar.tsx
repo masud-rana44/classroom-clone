@@ -4,10 +4,11 @@ import { getRandomColorCode } from "@/lib/utils";
 
 interface AvatarProps {
   label: string;
+  defaultColor?: string;
 }
 
-export const Avatar = ({ label }: AvatarProps) => {
-  const color = getRandomColorCode();
+export const Avatar = ({ label, defaultColor }: AvatarProps) => {
+  const color = defaultColor || getRandomColorCode();
 
   return (
     <div

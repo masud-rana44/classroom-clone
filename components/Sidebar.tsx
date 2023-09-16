@@ -7,11 +7,13 @@ import {
   FolderKanban,
   Settings,
   Archive,
+  GraduationCap,
+  ListTodo,
 } from "lucide-react";
 
 import { NavItem } from "@/components/nav-item";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "./ui/separator";
+import { Separator } from "@/components/ui/separator";
 
 const routesTop = [
   {
@@ -43,40 +45,61 @@ const routesTeaching = [
   {
     Icon: Users,
     label: "Teaching",
-    href: "/teaching",
   },
   {
     Icon: FolderKanban,
     label: "To review",
     href: "/calendar",
   },
+];
+
+const routesEnrolled = [
   {
-    label: "Math",
-    href: "/:classId",
-    secondaryLabel: "8D",
+    label: "Enrolled",
+    Icon: GraduationCap,
+  },
+  {
+    label: "To-do",
+    Icon: ListTodo,
+    href: "/todo",
   },
 ];
 
-export const Sidebar = () => {
+interface SideBarProps {
+  asTeacher: {
+    label: string;
+    secondaryLabel: string | null;
+    color: string;
+    href: string;
+  }[];
+  asStudent: {
+    label: string;
+    secondaryLabel: string | null;
+    color: string;
+    href: string;
+  }[];
+}
+
+export const Sidebar = ({ asTeacher, asStudent }: SideBarProps) => {
+  const routes = [
+    routesTop,
+    [...routesTeaching, ...asTeacher],
+    [...routesEnrolled, ...asStudent],
+    routesBottom,
+  ];
+
   return (
     <ScrollArea className="h-[calc(100vh-61px)] w-[300px] border-r z-20">
-      <div className="py-2 pr-4">
-        {routesTop.map((route) => (
-          <NavItem key={route.label} {...route} />
-        ))}
-      </div>
-      <Separator />
-      <div className="py-2 pr-4">
-        {routesTeaching.map((route) => (
-          <NavItem key={route.label} {...route} />
-        ))}
-      </div>
-      <Separator />
-      <div className="py-2 pr-4">
-        {routesBottom.map((route) => (
-          <NavItem key={route.label} {...route} />
-        ))}
-      </div>
+      {routes.map((routeGroup, idx) => (
+        <>
+          <div key={routeGroup[0].label} className="py-2 pr-4">
+            {routeGroup.map((route) => (
+              <NavItem key={route.label} {...route} />
+            ))}
+          </div>
+          {idx !== routes.length - 1 && <Separator />}
+        </>
+      ))}
     </ScrollArea>
   );
 };

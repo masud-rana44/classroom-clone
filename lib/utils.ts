@@ -25,7 +25,7 @@ export function getRandomImageUrl() {
 
 export function getRandomClassCode() {
   let code = "";
-  const length = generateRandomNumberBetween(5, 7);
+  const length = 7;
 
   for (let i = 0; i < length; i++) {
     const idx = generateRandomNumberBetween(0, 36);

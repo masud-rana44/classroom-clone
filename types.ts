@@ -1,4 +1,4 @@
-import { Class, Member, Profile } from "@prisma/client";
+import { Class, Member, Profile, Role } from "@prisma/client";
 
 export type ClassWithMembersWithProfile = Class & {
   members: (Member & {
@@ -7,3 +7,11 @@ export type ClassWithMembersWithProfile = Class & {
 } & {
   profile: Profile;
 };
+
+export type ClassWithMember = {
+  section: string | null;
+  id: string;
+  name: string;
+  members: { role: Role }[];
+  defaultColor: string;
+}[];
