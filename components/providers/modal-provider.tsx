@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { CreateClassModal } from "@/components/create-class-modal";
+import { ClassCodeModal } from "@/components/classcode/classcode-modal";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -16,6 +17,7 @@ export const ModalProvider = () => {
   return (
     <>
       <CreateClassModal />
+      <ClassCodeModal />
     </>
   );
 };

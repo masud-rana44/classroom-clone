@@ -1,5 +1,6 @@
 import { ClassWithMembersWithProfile } from "@/types";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { StreamContainer } from "./stream-container";
 
 interface ClassContainerProps {
   data: ClassWithMembersWithProfile;
@@ -22,7 +23,9 @@ export const ClassContainer = ({ data }: ClassContainerProps) => {
         <TabsTrigger value="people">People</TabsTrigger>
         <TabsTrigger value="grade">Grade</TabsTrigger>
       </TabsList>
-      <TabsContent value="stream">Stream Container</TabsContent>
+      <TabsContent value="stream" className="mt-0">
+        <StreamContainer data={data} />
+      </TabsContent>
       <TabsContent value="classwork">classwork Container</TabsContent>
       <TabsContent value="people">people Container</TabsContent>
       <TabsContent value="grade">Grade Container</TabsContent>

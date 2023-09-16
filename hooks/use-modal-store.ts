@@ -1,17 +1,24 @@
+import { ClassWithMembersWithProfile } from "@/types";
 import { create } from "zustand";
 
-export type ModalType = "createClass" | "joinClass";
+export type ModalType = "createClass" | "joinClass" | "classCode";
 
-type ModalStore = {
+interface modalData {
+  class?: ClassWithMembersWithProfile;
+}
+
+interface ModalStore {
+  data: modalData;
   isOpen: boolean;
   type: ModalType | null;
-  onOpen: (type: ModalType) => void;
+  onOpen: (type: ModalType, data?: modalData) => void;
   onClose: () => void;
-};
+}
 
 export const useModal = create<ModalStore>((set) => ({
   isOpen: false,
   type: null,
-  onOpen: (type) => set({ type, isOpen: true }),
+  data: {},
+  onOpen: (type, data = {}) => set({ type, data, isOpen: true }),
   onClose: () => set({ type: null, isOpen: false }),
 }));
