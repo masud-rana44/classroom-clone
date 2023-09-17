@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { CreateClassModal } from "@/components/modal/create-class-modal";
 import { ClassCodeModal } from "@/components/modal/classcode-modal";
 import { JoinClassModal } from "@/components/modal/join-class-modal";
+import { EditClassModal } from "@/components/modal/edit-class-modal";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -20,6 +21,7 @@ export const ModalProvider = () => {
       <CreateClassModal />
       <ClassCodeModal />
       <JoinClassModal />
+      <EditClassModal />
     </>
   );
 };

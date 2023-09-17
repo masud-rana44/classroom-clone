@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useModal } from "@/hooks/use-modal-store";
 
-export const DropdownButton = () => {
+export const HeaderDropdown = () => {
   const { onOpen } = useModal();
 
   return (

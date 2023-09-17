@@ -8,7 +8,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { ClassCodeDropdown } from "@/components/classcode/classcode-dropdown";
+import { ClassCodeDropdown } from "@/components/dropdown/classcode-dropdown";
 import { ClassWithMembersWithProfile } from "@/types";
 import { useModal } from "@/hooks/use-modal-store";
 

@@ -90,7 +90,7 @@ export const Sidebar = ({ asTeacher, asStudent }: SideBarProps) => {
   ];
 
   return (
-    <ScrollArea className="h-[calc(100vh-61px)] w-[300px] border-r z-20">
+    <ScrollArea className="h-[calc(100vh-61px)] w-[300px] border-r border-[border-[#dadce0]] z-20">
       {routes.map((routeGroup, idx: number) => (
         <>
           {(idx === 0 ||
@@ -102,7 +102,9 @@ export const Sidebar = ({ asTeacher, asStudent }: SideBarProps) => {
               ))}
             </div>
           )}
-          {(idx === 0 || routeGroup.length > 2) && <Separator />}
+          {(idx === 0 || routeGroup.length > 2) && (
+            <Separator color="#dadce0" />
+          )}
         </>
       ))}
     </ScrollArea>

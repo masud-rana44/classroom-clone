@@ -2,11 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, Grip } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
-import { DropdownButton } from "./dropdown-button";
+import { HeaderDropdown } from "./dropdown/header-dropdown";
 
 export const Header = () => {
   return (
-    <div className=" w-full px-4 py-2 border-b flex items-center justify-between z-30">
+    <div className=" w-full px-4 py-2 border-b border-[#dadce0] flex items-center justify-between z-30">
       <div className="flex s-center gap-4">
         <button className="h-11 w-11 hover:bg-zinc-100 rounded-full flex items-center justify-center p-2 transition ">
           <Menu stroke="#5f6368" />
@@ -19,7 +19,7 @@ export const Header = () => {
         </Link>
       </div>
       <div className="flex items-center gap-2 mr-3">
-        <DropdownButton />
+        <HeaderDropdown />
         <button className=" hover:bg-zinc-200/70 rounded-full flex items-center justify-center p-2 transition ">
           <Grip stroke="#5f6368" className="h-[22px] w-[22px]" />
         </button>

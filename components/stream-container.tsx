@@ -1,6 +1,6 @@
 import { ClassWithMembersWithProfile } from "@/types";
 import Image from "next/image";
-import ClassCode from "@/components/classcode/classcode";
+import ClassCode from "@/components/classcode";
 
 interface StreamContainerProps {
   data: ClassWithMembersWithProfile;

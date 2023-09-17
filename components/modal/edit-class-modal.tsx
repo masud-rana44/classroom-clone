@@ -33,12 +33,14 @@ const formSchema = z.object({
   room: z.string().optional(),
 });
 
-export const CreateClassModal = () => {
-  const { isOpen, type, onClose } = useModal();
+export const EditClassModal = () => {
+  const { isOpen, type, onClose, data } = useModal();
   const { toast } = useToast();
   const router = useRouter();
 
-  const isModalOpen = isOpen && type === "createClass";
+  const { classInfo } = data;
+
+  const isModalOpen = isOpen && type === "editClass";
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -54,10 +56,9 @@ export const CreateClassModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.post("/api/class", values);
+      console.log(values);
 
       router.refresh();
-      router.push(`/class/${response.data.id}`);
       handleClose();
     } catch (error) {
       toast({
@@ -73,14 +74,14 @@ export const CreateClassModal = () => {
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-md md:max-w-xl rounded-[10px] pb-[10px] pt-[18px]">
-        <DialogHeader className="relative text-left ">
+        <DialogHeader className="relative text-left">
           <DialogTitle className="text-md text-[#515151]">
-            Create Class
+            Edit Class
           </DialogTitle>
           <div className="absolute -right-3 -top-3 h-5 w-5 bg-white z-50"></div>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 ">
             <FormField
               name="name"
               control={form.control}
@@ -88,8 +89,10 @@ export const CreateClassModal = () => {
                 <FormItem>
                   <FormControl>
                     <Input
-                      autoComplete="off"
                       disabled={isLoading}
+                      defaultValue={classInfo?.name}
+                      autoComplete="off"
+                      autoFocus={false}
                       placeholder="Class name (required)"
                       className="focus-visible:ring-0 bg-[#f1f3f4] text-[#515151] rounded-none rounded-t-sm h-14 placeholder:font-medium text-lg placeholder:text-base placeholder:backdrop:leading-8 border-b focus:border-b-2 border-b-black/60 focus:border-b-blue-700 hover:bg-gray-200"
                       {...field}
@@ -107,8 +110,9 @@ export const CreateClassModal = () => {
                 <FormItem>
                   <FormControl>
                     <Input
-                      autoComplete="off"
                       disabled={isLoading}
+                      defaultValue={classInfo?.section}
+                      autoComplete="off"
                       placeholder="Section"
                       className="focus-visible:ring-0 bg-[#f1f3f4] text-[#515151] rounded-none rounded-t-sm h-14 placeholder:font-medium text-lg placeholder:text-base placeholder:backdrop:leading-8 border-b focus:border-b-2 border-b-black/60 focus:border-b-blue-700 hover:bg-gray-200"
                       {...field}
@@ -125,8 +129,9 @@ export const CreateClassModal = () => {
                 <FormItem>
                   <FormControl>
                     <Input
-                      autoComplete="off"
                       disabled={isLoading}
+                      defaultValue={classInfo?.subject}
+                      autoComplete="off"
                       placeholder="Subject"
                       className="focus-visible:ring-0 bg-[#f1f3f4] text-[#515151] rounded-none rounded-t-sm h-14 placeholder:font-medium text-lg placeholder:text-base placeholder:backdrop:leading-8 border-b focus:border-b-2 border-b-black/60 focus:border-b-blue-700 hover:bg-gray-200"
                       {...field}
@@ -143,8 +148,9 @@ export const CreateClassModal = () => {
                 <FormItem>
                   <FormControl>
                     <Input
-                      autoComplete="off"
                       disabled={isLoading}
+                      defaultValue={classInfo?.room}
+                      autoComplete="off"
                       placeholder="Room"
                       className="focus-visible:ring-0 bg-[#f1f3f4] hover:bg-gray-200  text-[#515151] rounded-none rounded-t-sm h-14 placeholder:font-medium text-lg placeholder:text-base placeholder:backdrop:leading-8 border-b focus:border-b-2 border-b-black/60 focus:border-b-blue-700 "
                       {...field}
@@ -159,7 +165,7 @@ export const CreateClassModal = () => {
                 variant="link"
                 onClick={handleClose}
                 disabled={isLoading}
-                className="hover:bg-blue-100/20 decoration-transparent hover:decoration-transparent text-muted-foreground px-2 h-8 "
+                className="hover:bg-blue-100/20 decoration-transparent hover:decoration-transparent text-muted-foreground px-2 h-8 font-semibold"
               >
                 Cancel
               </Button>
@@ -169,7 +175,7 @@ export const CreateClassModal = () => {
                 variant="link"
                 className="hover:bg-blue-100/20 decoration-transparent px-2 h-8 hover:decoration-transparent  text-blue-700 disabled:text-gray-700 disabled:opacity-50 font-semibold"
               >
-                Create
+                Save
               </Button>
             </div>
           </form>

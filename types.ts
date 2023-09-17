@@ -15,3 +15,10 @@ export type ClassWithMember = {
   members: { role: Role }[];
   defaultColor: string;
 }[];
+
+export type ClassWithProfile = Class & {
+  profile: Profile;
+  members: {
+    role: String;
+  }[];
+};

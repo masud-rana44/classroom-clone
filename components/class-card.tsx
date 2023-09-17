@@ -1,21 +1,19 @@
-import { Contact, Folder, MoreVertical, TrendingUp } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-
-import { Class, Profile, Role } from "@prisma/client";
-import { CardFooterBtn } from "@/components/card-footer-btn";
+import Image from "next/image";
 import { auth } from "@clerk/nextjs";
+import { Contact, Folder, TrendingUp } from "lucide-react";
+
+import {  Role } from "@prisma/client";
+import { CardFooterBtn } from "@/components/card-footer-btn";
+import { ClassCardDropdown } from "@/components/dropdown/class-card-dropdown";
+import { ClassWithProfile } from "@/types";
 
 interface ClassCardProps {
-  cls: Class & {
-    profile: Profile;
-    members: {
-      role: string;
-    }[];
-  };
+  cls: ClassWithProfile;
+  length: number;
 }
 
-export const ClassCard = ({ cls }: ClassCardProps) => {
+export const ClassCard = ({ cls, length }: ClassCardProps) => {
   const {
     id,
     bannerUrl,
@@ -27,7 +25,7 @@ export const ClassCard = ({ cls }: ClassCardProps) => {
   const { userId: currentUserId } = auth();
 
   return (
-    <div className="h-[300px] rounded-lg overflow-hidden text-white border flex flex-col">
+    <div className="h-[300px] rounded-lg overflow-hidden text-white border border-[#dadce0] flex flex-col cursor-pointer hover:shadow-md transition">
       <header
         className="relative h-[100px] bg-cover bg-center"
         style={{ backgroundImage: `url(${bannerUrl})` }}
@@ -36,7 +34,7 @@ export const ClassCard = ({ cls }: ClassCardProps) => {
         <div className="flex items-start justify-between p-1 relative z-10">
           <Link
             href={`/class/${id}`}
-            className="group max-w-[260px] mt-3 ml-3 min-h-[47px]"
+            className="group max-w-[240px] mt-3 ml-3 min-h-[47px]"
           >
             <p className="text-xl font-medium truncate text-ellipsis overflow-hidden group-hover:underline transition">
               {name}
@@ -46,16 +44,18 @@ export const ClassCard = ({ cls }: ClassCardProps) => {
             </p>
           </Link>
 
-          <button className="h-11 w-11 mt-2 flex items-center justify-center hover:bg-gray-400/20 rounded-full">
-            <MoreVertical />
-          </button>
+          <ClassCardDropdown
+            cls={cls}
+            length={length}
+            isInvited={currentUserId !== userId}
+          />
         </div>
-        {userId !== currentUserId && (
+        {members[0].role === Role.STUDENT && (
           <p className="text-[13px] truncate text-ellipsis overflow-hidden ml-4 font-medium mt-[2px] hover:underline transition cursor-pointer">
             {profileName}
           </p>
         )}
-        {userId !== currentUserId && (
+        {members[0].role === Role.STUDENT && (
           <Image
             src={profileImage}
             width={80}
@@ -66,7 +66,7 @@ export const ClassCard = ({ cls }: ClassCardProps) => {
         )}
       </header>
       <main className="flex-1"></main>
-      <footer className="border-t flex items-center justify-end text-[#212121] font-medium">
+      <footer className="border-t border-[#dadce0] flex items-center justify-end text-[#212121] font-medium">
         {members[0].role === Role.STUDENT && (
           <CardFooterBtn
             Icon={Contact}

@@ -10,9 +10,9 @@ const HomePage = async () => {
   const classes = await getClasses(profile.id);
 
   return (
-    <main className="p-6 grid grid-cols-3 gap-6">
+    <main className="mr-12 p-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
       {classes.map((cls) => (
-        <ClassCard key={cls.id} cls={cls} />
+        <ClassCard key={cls.id} cls={cls} length={classes.length} />
       ))}
     </main>
   );
