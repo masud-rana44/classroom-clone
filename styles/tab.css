@@ -1,0 +1,19 @@
+/* In your CSS or Tailwind configuration */
+
+/* Target elements with data-status="active" */
+[data-status="active"] {
+  background-color: green;
+  color: white;
+}
+
+/* Target elements with data-status="inactive" */
+[data-status="inactive"] {
+  background-color: red;
+  color: white;
+}
+
+/* Target elements with data-status="pending" */
+[data-status="pending"] {
+  background-color: yellow;
+  color: black;
+}

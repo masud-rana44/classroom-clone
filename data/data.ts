@@ -1,16 +1,15 @@
 export const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
 
 export const imageUrls = [
-  "https://i.ibb.co/yQ41S7N/math-4.jpg",
-  "https://i.ibb.co/T1F96CP/math-3.jpg",
-  "https://i.ibb.co/fHpKsfj/math-2.jpg",
-  "https://i.ibb.co/qy09gJ0/math-1.jpg",
-  "https://i.ibb.co/D4mhPJ9/bio-4.jpg",
-  "https://i.ibb.co/4Wk4LCN/bio-3.jpg",
-  "https://i.ibb.co/LZVzdxN/bio-2.jpg",
-  "https://i.ibb.co/nCyQM2F/ch-2.jpg",
-  "https://i.ibb.co/yn63W7j/ch-1.jpg",
-  "https://i.ibb.co/nrncthj/bio-1.jpg",
+  "https://www.gstatic.com/classroom/themes/img_bookclub.jpg",
+  "	https://gstatic.com/classroom/themes/Biology.jpg",
+  "https://gstatic.com/classroom/themes/img_backtoschool.jpg",
+  "https://gstatic.com/classroom/themes/img_graduation.jpg",
+  "https://gstatic.com/classroom/themes/Design.jpg",
+  "https://gstatic.com/classroom/themes/img_learnlanguage.jpg",
+  "https://gstatic.com/classroom/themes/img_videogaming.jpg",
+  "https://gstatic.com/classroom/themes/img_backtoschool.jpg",
+  "https://gstatic.com/classroom/themes/img_read.jpg",
 ];
 
 export const randomColors = [

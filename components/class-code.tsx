@@ -16,7 +16,7 @@ interface ClassCodeProps {
   data: ClassWithMembersWithProfile;
 }
 
-function ClassCode({ data }: ClassCodeProps) {
+export const ClassCode = ({ data }: ClassCodeProps) => {
   const { classCode: code, defaultColor } = data;
 
   const { onOpen } = useModal();
@@ -59,6 +59,4 @@ function ClassCode({ data }: ClassCodeProps) {
       </div>
     </div>
   );
-}
-
-export default ClassCode;
+};
