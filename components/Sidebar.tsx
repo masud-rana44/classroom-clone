@@ -14,6 +14,7 @@ import {
 import { NavItem } from "@/components/nav-item";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { Fragment } from "react";
 
 const routesTop = [
   {
@@ -90,14 +91,18 @@ export const Sidebar = ({ asTeacher, asStudent }: SideBarProps) => {
 
   return (
     <ScrollArea className="h-[calc(100vh-61px)] w-[300px] border-r z-20">
-      {routes.map((routeGroup, idx) => (
+      {routes.map((routeGroup, idx: number) => (
         <>
-          <div key={routeGroup[0].label} className="py-2 pr-4">
-            {routeGroup.map((route) => (
-              <NavItem key={route.label} {...route} />
-            ))}
-          </div>
-          {idx !== routes.length - 1 && <Separator />}
+          {(idx === 0 ||
+            idx === routes.length - 1 ||
+            routeGroup.length > 2) && (
+            <div key={routeGroup[0].label} className="py-2 pr-4">
+              {routeGroup.map((route) => (
+                <NavItem key={route.label} {...route} />
+              ))}
+            </div>
+          )}
+          {(idx === 0 || routeGroup.length > 2) && <Separator />}
         </>
       ))}
     </ScrollArea>

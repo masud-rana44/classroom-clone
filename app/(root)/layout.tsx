@@ -1,35 +1,15 @@
 import { Header } from "@/components/header";
 import { Sidebar } from "@/components/Sidebar";
-import { db } from "@/lib/db";
+import { getClasses } from "@/lib/get-classes";
 import { initialProfile } from "@/lib/initial-profile";
+import { redirectToSignIn } from "@clerk/nextjs";
 import { Role } from "@prisma/client";
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const profile = await initialProfile();
+  if (!profile) return redirectToSignIn();
 
-  const classes = await db.class.findMany({
-    where: {
-      members: {
-        some: {
-          profileId: profile.id,
-        },
-      },
-    },
-    select: {
-      id: true,
-      name: true,
-      section: true,
-      defaultColor: true,
-      members: {
-        where: {
-          profileId: profile.id,
-        },
-        select: {
-          role: true,
-        },
-      },
-    },
-  });
+  const classes = await getClasses(profile.id);
 
   const asTeacher = classes
     .filter((cls) => cls?.members[0].role === Role.TEACHER)
