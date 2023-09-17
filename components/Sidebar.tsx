@@ -12,9 +12,8 @@ import {
 } from "lucide-react";
 
 import { NavItem } from "@/components/nav-item";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { Fragment } from "react";
+import { ScrollArea } from "./ui/scroll-area";
 
 const routesTop = [
   {
@@ -33,7 +32,7 @@ const routesBottom = [
   {
     Icon: Archive,
     label: "Archived classes",
-    href: "/archived",
+    href: "/archive",
   },
   {
     Icon: Settings,
@@ -50,7 +49,7 @@ const routesTeaching = [
   {
     Icon: FolderKanban,
     label: "To review",
-    href: "/calendar",
+    href: "/review",
   },
 ];
 
@@ -90,7 +89,7 @@ export const Sidebar = ({ asTeacher, asStudent }: SideBarProps) => {
   ];
 
   return (
-    <ScrollArea className="h-[calc(100vh-61px)] w-[300px] border-r border-[border-[#dadce0]] z-20">
+    <ScrollArea className="h-[calc(100vh-61px)] w-[300px] border-r border-[border-[#dadce0]] z-20 overflow-auto">
       {routes.map((routeGroup, idx: number) => (
         <>
           {(idx === 0 ||

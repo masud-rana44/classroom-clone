@@ -2,6 +2,7 @@
 
 import * as z from "zod";
 import axios from "axios";
+import { X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,9 +22,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { X } from "lucide-react";
 
 const formSchema = z.object({
   code: z
@@ -58,7 +57,7 @@ export const JoinClassModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.patch("/api/class", values);
+      const response = await axios.patch("/api/class/join", values);
 
       router.refresh();
       router.push(`/class/${response.data.id}`);

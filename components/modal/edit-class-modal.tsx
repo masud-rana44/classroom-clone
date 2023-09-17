@@ -56,7 +56,7 @@ export const EditClassModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      console.log(values);
+      axios.patch(`/api/class/${classInfo?.id}`, values);
 
       router.refresh();
       handleClose();

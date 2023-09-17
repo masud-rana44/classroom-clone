@@ -24,7 +24,7 @@ export const ClassCardDropdown = ({
   length,
 }: ClassCardDropdownProps) => {
   const { onOpen } = useModal();
-  const { members, name, section, subject, room } = cls;
+  const { id, members, name, section, subject, room } = cls;
 
   const role = members[0].role;
 
@@ -57,6 +57,7 @@ export const ClassCardDropdown = ({
             onClick={() =>
               onOpen("editClass", {
                 classInfo: {
+                  id,
                   name,
                   section: section || undefined,
                   subject: subject || undefined,

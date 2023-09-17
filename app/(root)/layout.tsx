@@ -1,5 +1,6 @@
 import { Header } from "@/components/header";
 import { Sidebar } from "@/components/Sidebar";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { getClasses } from "@/lib/get-classes";
 import { initialProfile } from "@/lib/initial-profile";
 import { redirectToSignIn } from "@clerk/nextjs";
@@ -34,11 +35,13 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     });
 
   return (
-    <div>
+    <div className="h-full">
       <Header />
-      <div className="flex ">
+      <div className="flex h-[calc(100vh-61px)]">
         <Sidebar asTeacher={asTeacher} asStudent={asStudent} />
-        <div className="w-[calc(100vw-300px)] h-full">{children}</div>
+        <div className="w-[calc(100vw-300px)] h-full overflow-auto">
+          {children}
+        </div>
       </div>
     </div>
   );

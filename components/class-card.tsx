@@ -3,7 +3,7 @@ import Image from "next/image";
 import { auth } from "@clerk/nextjs";
 import { Contact, Folder, TrendingUp } from "lucide-react";
 
-import {  Role } from "@prisma/client";
+import { Role } from "@prisma/client";
 import { CardFooterBtn } from "@/components/card-footer-btn";
 import { ClassCardDropdown } from "@/components/dropdown/class-card-dropdown";
 import { ClassWithProfile } from "@/types";
@@ -25,7 +25,7 @@ export const ClassCard = ({ cls, length }: ClassCardProps) => {
   const { userId: currentUserId } = auth();
 
   return (
-    <div className="h-[300px] rounded-lg overflow-hidden text-white border border-[#dadce0] flex flex-col cursor-pointer hover:shadow-md transition">
+    <div className="h-[300px] w-[294px] rounded-lg overflow-hidden text-white border border-[#dadce0] flex flex-col cursor-pointer hover:shadow-md transition">
       <header
         className="relative h-[100px] bg-cover bg-center"
         style={{ backgroundImage: `url(${bannerUrl})` }}
@@ -51,7 +51,7 @@ export const ClassCard = ({ cls, length }: ClassCardProps) => {
           />
         </div>
         {members[0].role === Role.STUDENT && (
-          <p className="text-[13px] truncate text-ellipsis overflow-hidden ml-4 font-medium mt-[2px] hover:underline transition cursor-pointer">
+          <p className="text-[13px] truncate text-ellipsis overflow-hidden ml-4 font-medium mt-[2px] hover:underline transition cursor-pointer relative">
             {profileName}
           </p>
         )}
@@ -61,7 +61,7 @@ export const ClassCard = ({ cls, length }: ClassCardProps) => {
             width={80}
             height={80}
             alt={`Image of ${profileName}`}
-            className="absolute -bottom-10 right-4 rounded-full cursor-pointer"
+            className="absolute -bottom-10 right-4 rounded-full cursor-pointer "
           />
         )}
       </header>

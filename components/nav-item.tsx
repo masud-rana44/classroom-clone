@@ -28,7 +28,7 @@ export const NavItem = ({
     return (
       <div
         className={cn(
-          "flex gap-8 w-full pl-7 py-[10px] hover:bg-zinc-100/80 transition rounded-r-full text-[14px] font-semibold items-center cursor-pointer",
+          "flex gap-8 w-full pl-6 py-[10px] hover:bg-zinc-100/80 transition rounded-r-full text-[14px] font-semibold items-center cursor-pointer",
           pathname === href && "bg-sky-100/80 hover:bg-sky-100/80",
           !Icon && "py-[6px] pl-[22px] gap-7"
         )}
@@ -54,9 +54,9 @@ export const NavItem = ({
     <Link
       href={href}
       className={cn(
-        "flex gap-8 w-full pl-7 pr-4 py-[10px] hover:bg-zinc-100/80 transition rounded-r-full text-[14px] font-semibold items-center cursor-pointer",
+        "flex gap-8 w-full pl-6 pr-4 py-[10px] hover:bg-zinc-100/80 transition rounded-r-full text-[14px] font-semibold items-center cursor-pointer",
         pathname === href && "bg-sky-100/80 hover:bg-sky-100/80",
-        !Icon && "py-[6px] pl-[22px] gap-7"
+        !Icon && "py-[6px] pl-[18px] gap-7"
       )}
     >
       {Icon ? (

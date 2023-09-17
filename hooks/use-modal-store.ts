@@ -11,6 +11,7 @@ export type ModalType =
 interface modalData {
   class?: ClassWithMembersWithProfile;
   classInfo?: {
+    id: string;
     name: string;
     section?: string;
     subject?: string;
