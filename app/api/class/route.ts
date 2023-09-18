@@ -80,6 +80,26 @@ export async function POST(req: Request) {
   }
 }
 
+export async function PATCH(req: Request) {
+  if (req.method !== "PATCH") {
+    return new NextResponse("Invalid request method", { status: 405 });
+  }
+
+  try {
+    const user = await currentUser();
+    const data = await req.json();
+
+    if (!user) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+  } catch (err) {
+    console.log(err);
+    return new NextResponse("[CLASS_PATCH]Internal server error", {
+      status: 500,
+    });
+  }
+}
+
 // TODO: No need
 export async function DELETE(req: Request) {
   try {

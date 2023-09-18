@@ -39,3 +39,11 @@ export function isValidClassCode(classCode: string) {
   const regex = /^[A-Za-z0-9]{5,7}$/;
   return regex.test(classCode);
 }
+
+export function reorder<T>(list: T[], startIdx: number, endIdx: number): T[] {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIdx, 1);
+  result.splice(endIdx, 0, removed);
+
+  return result;
+}

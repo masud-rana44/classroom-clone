@@ -1,7 +1,8 @@
-import { ClassCard } from "@/components/class-card";
+import { redirectToSignIn } from "@clerk/nextjs";
+
 import { getClasses } from "@/lib/get-classes";
 import { initialProfile } from "@/lib/initial-profile";
-import { redirectToSignIn } from "@clerk/nextjs";
+import { InitialPage } from "@/components/initial-page";
 
 const HomePage = async () => {
   const profile = await initialProfile();
@@ -9,13 +10,7 @@ const HomePage = async () => {
 
   const classes = await getClasses(profile.id);
 
-  return (
-    <main className="mr-12 p-6 flex flex-wrap gap-6">
-      {classes.map((cls) => (
-        <ClassCard key={cls.id} cls={cls} length={classes.length} />
-      ))}
-    </main>
-  );
+  return <InitialPage classes={classes} />;
 };
 
 export default HomePage;

@@ -1,25 +1,13 @@
 "use client";
 
-import { Maximize } from "lucide-react";
-
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { ClassCodeDropdown } from "@/components/dropdown/classcode-dropdown";
 import { ClassWithMembersWithProfile } from "@/types";
-import { useModal } from "@/hooks/use-modal-store";
 
 interface ClassCodeProps {
   data: ClassWithMembersWithProfile;
 }
 
 export const Upcoming = ({ data }: ClassCodeProps) => {
-  const { classCode: code, defaultColor } = data;
-
-  const { onOpen } = useModal();
+  const { defaultColor } = data;
 
   return (
     <div className="relative px-4 py-6 rounded-md border border-[#dadce0] flex flex-col -space-y-2">

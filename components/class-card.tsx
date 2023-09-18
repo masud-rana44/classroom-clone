@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { auth } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import { Contact, Folder, TrendingUp } from "lucide-react";
 
 import { Role } from "@prisma/client";
 import { CardFooterBtn } from "@/components/card-footer-btn";
 import { ClassCardDropdown } from "@/components/dropdown/class-card-dropdown";
 import { ClassWithProfile } from "@/types";
+import { useRouter } from "next/navigation";
 
 interface ClassCardProps {
   cls: ClassWithProfile;
@@ -22,7 +23,13 @@ export const ClassCard = ({ cls, length }: ClassCardProps) => {
     profile: { userId, name: profileName, imageUrl: profileImage },
     members,
   } = cls;
-  const { userId: currentUserId } = auth();
+  const { user } = useUser();
+  const router = useRouter();
+
+  if (!user || !user.id) {
+    router.push("/");
+    return null;
+  }
 
   return (
     <div className="h-[300px] w-[294px] rounded-lg overflow-hidden text-white border border-[#dadce0] flex flex-col cursor-pointer hover:shadow-md transition">
@@ -30,7 +37,6 @@ export const ClassCard = ({ cls, length }: ClassCardProps) => {
         className="relative h-[100px] bg-cover bg-center"
         style={{ backgroundImage: `url(${bannerUrl})` }}
       >
-        <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="flex items-start justify-between p-1 relative z-10">
           <Link
             href={`/class/${id}`}
@@ -47,7 +53,7 @@ export const ClassCard = ({ cls, length }: ClassCardProps) => {
           <ClassCardDropdown
             cls={cls}
             length={length}
-            isInvited={currentUserId !== userId}
+            isInvited={user.id !== userId}
           />
         </div>
         {members[0].role === Role.STUDENT && (
