@@ -32,8 +32,8 @@ export const ClassCard = ({ cls, length }: ClassCardProps) => {
   }
 
   return (
-    <div className="h-[300px] w-[294px] rounded-lg overflow-hidden text-white border border-[#dadce0] flex flex-col cursor-pointer hover:shadow-md transition">
-      <header
+    <div className="h-[300px] w-[294px] rounded-lg overflow-hidden bg-white/90 text-white  border border-[#dadce0] flex flex-col cursor-pointer hover:shadow-md transition">
+      <div
         className="relative h-[100px] bg-cover bg-center"
         style={{ backgroundImage: `url(${bannerUrl})` }}
       >
@@ -70,9 +70,9 @@ export const ClassCard = ({ cls, length }: ClassCardProps) => {
             className="absolute -bottom-10 right-4 rounded-full cursor-pointer "
           />
         )}
-      </header>
-      <main className="flex-1"></main>
-      <footer className="border-t border-[#dadce0] flex items-center justify-end text-[#212121] font-medium">
+      </div>
+      <div className="flex-1"></div>
+      <div className="border-t border-[#dadce0] flex items-center justify-end text-[#212121] font-medium">
         {members[0].role === Role.STUDENT && (
           <CardFooterBtn
             Icon={Contact}
@@ -92,7 +92,7 @@ export const ClassCard = ({ cls, length }: ClassCardProps) => {
           href="/"
           label={`Open folder for "${name}"`}
         />
-      </footer>
+      </div>
     </div>
   );
 };

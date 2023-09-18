@@ -1,10 +1,11 @@
+import { redirectToSignIn } from "@clerk/nextjs";
+
 import { Header } from "@/components/header";
 import { Sidebar } from "@/components/Sidebar";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { getClasses } from "@/lib/get-classes";
 import { initialProfile } from "@/lib/initial-profile";
-import { redirectToSignIn } from "@clerk/nextjs";
 import { Role } from "@prisma/client";
+
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const profile = await initialProfile();

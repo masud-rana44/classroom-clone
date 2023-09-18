@@ -20,15 +20,15 @@ export const InitialPage = ({ classes }: InitialPageProps) => {
   const [draggedClasses, setDraggedClasses] = useState(classes);
 
   const onDragEnd = (result: DropResult) => {
-    if (!result.destination || result.source.index === result.destination.index)
-      return;
+    if (!result.destination) return;
 
-    const updatedClasses = reorder(
-      draggedClasses,
-      result.source.index,
-      result.destination.index
-    );
-    console.log(updatedClasses);
+    const sourceIdx = result.source.index;
+    const destinationIdx = result.destination.index;
+
+    if (sourceIdx === destinationIdx) return;
+
+    const updatedClasses = reorder(draggedClasses, sourceIdx, destinationIdx);
+
     setDraggedClasses(updatedClasses);
   };
 
@@ -43,7 +43,7 @@ export const InitialPage = ({ classes }: InitialPageProps) => {
           >
             {draggedClasses.map((cls, idx) => (
               <Draggable key={cls.id} draggableId={cls.id} index={idx}>
-                {(provided) => (
+                {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
